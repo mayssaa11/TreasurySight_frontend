@@ -1,0 +1,113 @@
+.events-page {
+  font-family: 'Inter', sans-serif;
+  padding: 20px;
+  background-color: #f5f6f8;
+}
+/* Card principale */
+.card {
+  background-color: #ffffff;                 /* fond blanc */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);   /* ombre douce */
+  border-radius: 16px;                       /* coins arrondis */
+  padding: 24px;                             /* espacement intérieur */
+  width: 90%;                                /* largeur de la card */
+  margin: 40px auto;                         /* centrée horizontalement */
+  display: flex;
+  flex-direction: column;
+}
+
+.events-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border: none;
+  background: #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: black;
+  color: #fff;
+}
+
+.total {
+  font-weight: 500;
+}
+
+.search-add {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-box input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 200px;
+}
+
+.btn-settings,
+.btn-download {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #0d2b66;
+  color: #fff;
+}
+
+/* Tableaux */
+.events-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;  /* espace avant le bouton */
+}
+
+.events-table th, .events-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  font-size: 14px;
+}
+
+.events-table th {
+  background-color: #f9fafb;
+  font-weight: 600;
+}
+
+.events-table .overdue {
+  color: #dc2626;  /* rouge pour les éléments en retard */
+  font-weight: bold;
+}
+
+/* Bouton aligné à droite */
+.btn-add {
+  align-self: flex-end;   /* pousse le bouton à droite */
+  background-color: #0d2b66;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-add:hover {
+  background-color: #16377b;
+}

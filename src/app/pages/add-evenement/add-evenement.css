@@ -1,0 +1,16 @@
+/* largeur complète pour tous les champs */
+.full-width {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+/* espace entre le titre et le contenu */
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* style pour les boutons du footer */
+mat-dialog-actions button {
+  margin-left: 8px;
+}

@@ -1,0 +1,78 @@
+<!-- ================= CLIENTS ================= -->
+<app-navbar></app-navbar>
+<div class="events-page"> <!-- HEADER -->
+  <div class="events-header"> <!-- BOUTONS -->
+    <div class="filters">
+      <button class="filter-btn" [class.active]="activeTab === 'clients'" (click)="activeTab = 'clients'"> Clients </button> <button class="filter-btn" [class.active]="activeTab === 'fournisseurs'" (click)="activeTab = 'fournisseurs'"> Fournisseurs </button> <button class="filter-btn" [class.active]="activeTab === 'evenements'" (click)="activeTab = 'evenements'"> Événements </button> <span class="total">Total : 3</span> </div> <!-- SEARCH --> <div class="search-add"> <label class="search-box"> <input type="text" placeholder="Rechercher ici..."> </label> <button class="btn-settings">&#9881;</button> <button class="btn-download">&#128229;</button> </div> </div>
+<div class="card">
+<table *ngIf="activeTab === 'clients'" class="events-table">
+  <thead>
+    <tr>
+      <th><input type="checkbox"></th>
+      <th>N°FACTURE</th>
+      <th>ÉCHÉANCE</th>
+      <th>DESCRIPTION</th>
+      <th>CATÉGORIE</th>
+      <th>STATUT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let e of clients" style="cursor:pointer">
+      <td><input type="checkbox"></td>
+      <td>{{ e.id }}</td>
+      <td>{{ e.dateEcheance }}</td>
+      <td>{{ e.description }}</td>
+      <td>{{ e.type }}</td>
+      <td>{{ e.statut }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ================= FOURNISSEURS ================= -->
+<table *ngIf="activeTab === 'fournisseurs'" class="events-table">
+  <thead>
+    <tr>
+      <th><input type="checkbox"></th>
+      <th>N°FACTURE</th>
+      <th>ÉCHÉANCE</th>
+      <th>DESCRIPTION</th>
+      <th>CATÉGORIE</th>
+      <th>STATUT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let e of fournisseurs" style="cursor:pointer">
+      <td><input type="checkbox"></td>
+      <td>{{ e.id }}</td>
+      <td>{{ e.dateEcheance }}</td>
+      <td>{{ e.description }}</td>
+      <td>{{ e.type }}</td>
+      <td>{{ e.statut }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ================= EVENEMENTS ================= -->
+<table *ngIf="activeTab === 'evenements'" class="events-table">
+  <thead>
+    <tr>
+      <th><input type="checkbox"></th>
+      <th>N°FACTURE</th>
+      <th>ÉCHÉANCE</th>
+      <th>DESCRIPTION</th>
+      <th>CATÉGORIE</th>
+      <th>STATUT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let e of evenements" style="cursor:pointer">
+      <td><input type="checkbox"></td>
+      <td>{{ e.id }}</td>
+      <td>{{ e.dateEcheance }}</td>
+      <td>{{ e.description }}</td>
+      <td>{{ e.type }}</td>
+      <td>{{ e.statut }}</td>
+    </tr>
+  </tbody>
+</table>
+<button    class="btn-add">+ Ajouter un événement</button></div>

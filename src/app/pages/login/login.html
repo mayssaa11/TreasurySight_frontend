@@ -1,0 +1,31 @@
+<div class="login-container">
+
+  <div class="login-card">
+
+    <h2>Se connecter</h2>
+
+    <form  [formGroup]="loginForm" (ngSubmit)="login()">
+
+      <div class="form-group">
+        <input formControlName="usernameOrEmail" type="text" placeholder="Nom d'utilisateur ou Email" formControlName="email">
+      </div>
+
+      <div class="form-group">
+        <input formControlName="mot_de_passe" type="password" placeholder="Mot de passe" formControlName="password">
+      </div>
+
+      <button type="submit" class="login-btn" [routerLink]="['/login']" routerLinkActive="router-link-active" >Se connecter</button>
+
+      <p class="text-center">
+        <a routerLink="/register">mot de passe oublié?</a>
+      </p>
+
+      <p class="text-center">
+        Pas de compte ? <a routerLink="/register">S'inscrire</a>
+      </p>
+
+    </form>
+
+  </div>
+
+</div>
