@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxEchartsDirective } from 'ngx-echarts';
+import { Navbar } from '../../layout/navbar/navbar';
 import { EChartsOption } from 'echarts';
 import { DecimalPipe } from '@angular/common';
 import { DashboardService } from '../../services/dashboard';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [NgxEchartsDirective, DecimalPipe],
+  imports: [Navbar, NgxEchartsDirective, DecimalPipe],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
