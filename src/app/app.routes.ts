@@ -7,6 +7,7 @@ import { Register } from './pages/register/register';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { Evenement } from './pages/evenement/evenement';
 import { AddEvenement } from './pages/add-evenement/add-evenement';
+import { Transaction } from './pages/transaction/transaction';
 
 export const routes: Routes = [
   {path:'',component:Accueil},
@@ -14,5 +15,6 @@ export const routes: Routes = [
   {path:'register',component:Register},
   {path:'dashboard',component:Dashboard},
   {path:'events',component:Evenement},
-  {path:'addEvenement',component:AddEvenement}
+  {path:'addEvenement',component:AddEvenement},
+  {path:'transaction',component:Transaction}
 ];

@@ -20,9 +20,12 @@
 
   <!-- MENU -->
   <div class="nav-menu">
-    <a [routerLink]="['/dashboard']"  >Dashboard</a>
-    <a [routerLink]="['/events']" class="active">Échéances</a>
-    <a>Transactions</a>
+    <a [routerLink]="['/dashboard']" routerLinkActive="active"
+     [routerLinkActiveOptions]="{ exact: true }" >Dashboard</a>
+    <a [routerLink]="['/events']" routerLinkActive="active"
+     [routerLinkActiveOptions]="{ exact: true }">Échéances</a>
+    <a [routerLink]="['/transaction']" routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }" >Transactions</a>
     <a>Catégories</a>
   </div>
 
