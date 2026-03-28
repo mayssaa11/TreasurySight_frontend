@@ -1,37 +1,67 @@
 <app-navbar></app-navbar>
+
 <div class="dashboard">
 
-  <h2 class="page-title">Dashboard</h2>
+  <div class="header">
+    <h2 class="page-title">Dashboard</h2>
 
-  <!-- Summary Cards -->
-  <div class="cards">
-    <div class="card">
-      <span class="card-label">Solde actuel: </span>
-      <span class="card-value">{{ summary.soldeActuel | number }} MAD</span>
-    </div>
-    <div class="card">
-      <span class="card-label">Encaissements du mois: </span>
-      <span class="card-value income">{{ summary.encaissementsMois | number }} MAD</span>
-    </div>
-    <div class="card">
-      <span class="card-label">Décaissements du mois: </span>
-      <span class="card-value expense">{{ summary.decaissementsMois | number }} MAD</span>
-    </div>
-    <div class="card">
-      <span class="card-label">Score de santé: </span>
-      <span class="card-value score">{{ summary.healthScore }} / 100</span>
+    <div class="month-selector">
+      @for (month of dashboardData.months; track $index; let i = $index) {
+        <button 
+          (click)="selectMonth(i)" 
+          [class.active]="i === selectedMonthIndex">
+          {{ month }}
+        </button>
+      }
     </div>
   </div>
 
-  <!-- Charts -->
+  <!-- Cards -->
+  <div class="cards">
+
+  <div class="card">
+    <div class="card-top">
+      <span class="card-label">Solde actuel</span>
+      <i class="ri-wallet-3-line"></i>
+    </div>
+
+    <span class="card-value">
+      {{ selectedMonthData.balance | number }} MAD
+    </span>
+
+  </div>
+
+  <div class="card income-card">
+    <div class="card-top">
+      <span class="card-label">Encaissements</span>
+      <i class="ri-arrow-up-circle-line"></i>
+    </div>
+
+    <span class="card-value">
+      {{ selectedMonthData.cashIn | number }} MAD
+    </span>
+
+  </div>
+
+  <div class="card expense-card">
+    <div class="card-top">
+      <span class="card-label">Décaissements</span>
+      <i class="ri-arrow-down-circle-line"></i>
+    </div>
+
+    <span class="card-value">
+      {{ selectedMonthData.cashOut | number }} MAD
+    </span>
+
+  </div>
+
+</div>
+
+  <!-- Chart -->
   <div class="charts">
     <div class="chart-card">
-      <h3>Aperçu mensuel</h3>
-      <div echarts [options]="barOptions" class="chart"></div>
-    </div>
-    <div class="chart-card">
-      <h3>Prévision 90 jours</h3>
-      <div echarts [options]="lineOptions" class="chart"></div>
+      <h3>Aperçu mensuel & prévision (90 jours)</h3>
+      <div echarts [options]="chartOptions" class="chart"></div>
     </div>
   </div>
 
