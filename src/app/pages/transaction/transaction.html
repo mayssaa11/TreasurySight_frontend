@@ -1,1 +1,52 @@
 <app-navbar></app-navbar>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="tabs">
+      <button class="active">Actives</button>
+      <button>Archivées</button>
+      <button>A valider</button>
+    </div>
+
+    <div class="actions">
+      <span>Total : <strong>{{transactions.length}}</strong></span>
+      <button class="icon-btn">⟳</button>
+      <button class="icon-btn">＋</button>
+    </div>
+
+    <div class="filters">
+      <label>
+        <input type="checkbox"> Non catégorisées
+      </label>
+      <input type="text" placeholder="Rechercher ici..." [(ngModel)]="search">
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table">
+    <div class="table-header">
+      <div></div>
+      <div>DATE</div>
+      <div>LIBELLÉ</div>
+      <div>MONTANT</div>
+      <div>CATÉGORIE</div>
+    </div>
+
+    <div class="table-row" *ngFor="let t of transactions">
+      <div><input type="checkbox"></div>
+      <div>{{t.dateTransaction}}</div>
+      <div>{{t.description}}</div>
+      <div [ngClass]="{'debit': t.typeOperation === 'DEBIT', 'credit': t.typeOperation === 'CREDIT'}">
+        {{t.montant}}
+      </div>
+
+      <div>
+        <select>
+          <option>{{t.sousCategorie}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+</div>

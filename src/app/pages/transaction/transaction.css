@@ -1,0 +1,93 @@
+.container {
+  padding: 20px;
+  font-family: Arial;
+  background: #f5f6fa;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  border: none;
+  background: #eaeaf0;
+  margin-right: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.tabs .active {
+  background: #1e1e2f;
+  color: white;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-btn {
+  border: none;
+  background: #eaeaf0;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filters input {
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+/* TABLE */
+.table {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.table-header, .table-row {
+  display: grid;
+  grid-template-columns: 40px 150px 1fr 150px 200px;
+  padding: 15px;
+  align-items: center;
+}
+
+.table-header {
+  font-weight: bold;
+  background: #f1f2f6;
+}
+
+.table-row {
+  border-top: 1px solid #eee;
+}
+
+.table-row:hover {
+  background: #f9f9f9;
+}
+
+.debit {
+  color: red;
+}
+
+.credit {
+  color: green;
+}
+
+select {
+  padding: 5px;
+  border-radius: 8px;
+}
