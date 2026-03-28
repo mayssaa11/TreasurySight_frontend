@@ -1,16 +1,135 @@
-/* largeur complète pour tous les champs */
+/* Conteneur global du dialog */
+:host {
+  display: block;
+  padding: 0;
+  border-radius: 24px;
+  background: #fff;
+}
+
+/* Titre */
+h2[mat-dialog-title] {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #111827;
+  margin: 0;
+  padding: 28px 24px 18px;
+  letter-spacing: 0.3px;
+}
+
+/* Contenu */
+div[mat-dialog-content] {
+  max-height: 62vh;
+  overflow-y: auto;
+  padding: 8px 24px 12px !important;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 20px;
+  box-sizing: border-box;
+}
+
+/* Tous les champs pleine largeur */
 .full-width {
   width: 100%;
-  margin-bottom: 12px;
 }
 
-/* espace entre le titre et le contenu */
-mat-dialog-content {
+/* Checkbox prend toute la ligne */
+mat-checkbox {
+  grid-column: 1 / -1;
+  margin: 4px 0 2px 4px;
+  color: #374151;
+  font-weight: 500;
+}
+
+/* Actions du bas */
+div[mat-dialog-actions] {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px 24px !important;
+  border-top: 1px solid #f1f5f9;
 }
 
-/* style pour les boutons du footer */
-mat-dialog-actions button {
-  margin-left: 8px;
+/* Base commune */
+.btn-modern {
+  border-radius: 10px;
+  padding: 10px 22px;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: none;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Effet ripple moderne (click) */
+.btn-modern::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.btn-modern:active::after {
+  width: 200px;
+  height: 200px;
+}
+
+/* Bouton principal (VERT) */
+.btn-primary {
+  background: linear-gradient(135deg, #34c759, #28a745);
+  color: white;
+  box-shadow: 0 4px 14px rgba(52, 199, 89, 0.4);
+  border: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(52, 199, 89, 0.5);
+}
+
+/* Bouton secondaire (BLANC) */
+.btn-secondary {
+  background: white;
+  color: #333;
+  border: 1px solid #e0e0e0;
+}
+
+.btn-secondary:hover {
+  background: #f5f5f5;
+  transform: translateY(-1px);
+}
+
+/* Effet click global */
+.btn-modern:active {
+  transform: scale(0.96);
+}
+/* Responsive */
+@media (max-width: 768px) {
+  div[mat-dialog-content] {
+    grid-template-columns: 1fr;
+  }
+
+  h2[mat-dialog-title] {
+    font-size: 22px;
+    padding: 22px 16px 14px;
+  }
+
+  div[mat-dialog-actions] {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  button[mat-button],
+  button[mat-raised-button] {
+    width: 100%;
+  }
 }

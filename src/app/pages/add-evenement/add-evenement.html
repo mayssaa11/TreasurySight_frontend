@@ -1,0 +1,144 @@
+<h2 mat-dialog-title>Ajouter un nouvel événement</h2>
+
+<form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Date échéance</mat-label>
+
+  <input matInput
+        [matDatepicker]="picker"
+        formControlName="date_echeance">
+
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description">
+    </mat-form-field>
+
+    <mat-checkbox formControlName="est_recurrent">Récurrent</mat-checkbox>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Jour récurrence</mat-label>
+      <input matInput type="number" formControlName="jour_recurrence">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Montant</mat-label>
+      <input matInput type="number" formControlName="montant">
+    </mat-form-field>
+
+    <!-- CATEGORIE -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Catégorie</mat-label>
+      <mat-select formControlName="categorie">
+        <mat-option value="RECETTES">RECETTES</mat-option>
+        <mat-option value="FOURNISSEURS">FOURNISSEURS</mat-option>
+        <mat-option value="FRAIS_GENERAUX">FRAIS_GENERAUX</mat-option>
+        <mat-option value="EMPLOYES">EMPLOYES</mat-option>
+        <mat-option value="IMPOTS">IMPOTS</mat-option>
+        <mat-option value="DETTES_FINANCIERES">DETTES_FINANCIERES</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- SOUS CATEGORIE -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Sous-catégorie</mat-label>
+      <mat-select formControlName="sous_categorie">
+
+        <mat-optgroup label="RECETTES">
+          <mat-option value="FACTURE_CLIENT">FACTURE_CLIENT</mat-option>
+          <mat-option value="ABONNEMENTS">ABONNEMENTS</mat-option>
+          <mat-option value="VENTE_MATERIEL">VENTE_MATERIEL</mat-option>
+          <mat-option value="AUTRES_RECETTES">AUTRES_RECETTES</mat-option>
+        </mat-optgroup>
+
+        <mat-optgroup label="FOURNISSEURS">
+          <mat-option value="ACHATS_MARCHANDISES">ACHATS_MARCHANDISES</mat-option>
+          <mat-option value="PRESTATAIRES">PRESTATAIRES</mat-option>
+          <mat-option value="LOYER">LOYER</mat-option>
+          <mat-option value="AUTRES_ACHATS">AUTRES_ACHATS</mat-option>
+        </mat-optgroup>
+
+        <mat-optgroup label="FRAIS_GENERAUX">
+          <mat-option value="TELECOMS">TELECOMS</mat-option>
+          <mat-option value="FRAIS_ADMINISTRATIFS">FRAIS_ADMINISTRATIFS</mat-option>
+          <mat-option value="EQUIPEMENTS">EQUIPEMENTS</mat-option>
+          <mat-option value="AUTRES_FRAIS">AUTRES_FRAIS</mat-option>
+        </mat-optgroup>
+
+        <mat-optgroup label="EMPLOYES">
+          <mat-option value="SALAIRES">SALAIRES</mat-option>
+          <mat-option value="CNSS_AMO">CNSS_AMO</mat-option>
+          <mat-option value="IGR">IGR</mat-option>
+          <mat-option value="AVANTAGES">AVANTAGES</mat-option>
+        </mat-optgroup>
+
+        <mat-optgroup label="IMPOTS">
+          <mat-option value="TVA">TVA</mat-option>
+          <mat-option value="IS">IS</mat-option>
+          <mat-option value="TAXE_PROFESSIONNELLE">TAXE_PROFESSIONNELLE</mat-option>
+          <mat-option value="AUTRES_IMPOTS">AUTRES_IMPOTS</mat-option>
+        </mat-optgroup>
+
+        <mat-optgroup label="DETTES FINANCIERES">
+          <mat-option value="REMBOURSEMENT_EMPRUNT">REMBOURSEMENT_EMPRUNT</mat-option>
+          <mat-option value="INTERETS_BANCAIRES">INTERETS_BANCAIRES</mat-option>
+          <mat-option value="LEASING">LEASING</mat-option>
+          <mat-option value="DECOUVERTS">DECOUVERTS</mat-option>
+        </mat-optgroup>
+
+      </mat-select>
+    </mat-form-field>
+
+    <!-- TYPE -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option value="CREANCE_CLIENT">CREANCE_CLIENT</mat-option>
+        <mat-option value="DETTE_FOURNISSEUR">DETTE_FOURNISSEUR</mat-option>
+        <mat-option value="CHARGE_RECURRENTE">CHARGE_RECURRENTE</mat-option>
+        <mat-option value="REVENU_ATTENDU">REVENU_ATTENDU</mat-option>
+        <mat-option value="AUTRE">AUTRE</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- STATUT -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Statut</mat-label>
+      <mat-select formControlName="statut">
+        <mat-option value="PREVU">PREVU</mat-option>
+        <mat-option value="EN_RETARD">EN_RETARD</mat-option>
+        <mat-option value="REGLE">REGLE</mat-option>
+        <mat-option value="ANNULE">ANNULE</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Taux TVA</mat-label>
+      <input matInput type="number" formControlName="taux_tva">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Type opération</mat-label>
+      <mat-select formControlName="type_operation">
+        <mat-option value="CREDIT">CREDIT</mat-option>
+        <mat-option value="DEBIT">DEBIT</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+
+  <div mat-dialog-actions align="end">
+<button mat-button mat-dialog-close class="btn-modern btn-secondary">
+  Annuler
+</button>
+
+<button mat-raised-button type="submit" class="btn-modern btn-primary">
+  Ajouter
+</button>
+  </div>
+</form>

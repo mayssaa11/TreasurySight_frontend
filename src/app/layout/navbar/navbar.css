@@ -69,19 +69,54 @@
   gap: 20px;
 }
 
+/* lien normal */
 .nav-menu a {
+  color: #ffffff !important;
+  text-decoration: none;
   cursor: pointer;
   opacity: 0.7;
-  transition: 0.2s;
+  transition: all 0.25s ease;
 }
 
+/* visited (important !) */
+.nav-menu a:visited {
+  color: #ffffff !important;
+}
+
+/* hover */
 .nav-menu a:hover {
   opacity: 1;
 }
 
-.nav-menu .active {
-  border-bottom: 2px solid #ffffff;
+/* actif (routerLinkActive) */
+.nav-menu a.active {
   opacity: 1;
+  border-bottom: 2px solid #ffffff;
+}
+
+/* effet moderne bonus */
+.nav-menu a {
+  padding-bottom: 4px;
+  position: relative;
+}
+
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+.nav-menu a.active::after {
+  width: 100%;
 }
 
 /* RIGHT */
