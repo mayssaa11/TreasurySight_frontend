@@ -11,6 +11,27 @@ interface DashboardDTO {
   cashOut: number[];
   balance: number[];
   isForecast: boolean[];
+  table: CategoryRow[];
+}
+
+interface Item {
+  label: string;
+  amount: number;
+  date: string;
+  type?: string;
+}
+
+interface SubCategoryRow {
+  subCategory: string;
+  values: number[];
+  items?: Item[]; // optional for now
+}
+
+interface CategoryRow {
+  category: string;
+  values: number[];
+  subCategories: SubCategoryRow[];
+  expanded?: boolean; // UI state
 }
 
 @Component({
@@ -24,6 +45,8 @@ export class Dashboard implements OnInit {
 
   summary: any = {};       // aggregated summary for all months
   chartOptions: EChartsOption = {};
+  tableData: CategoryRow[] = [];
+  currentView: 'chart' | 'table' = 'chart';
 
   dashboardData!: DashboardDTO; // full data from backend
   selectedMonthIndex: number = 5; // default: current month
@@ -39,6 +62,10 @@ export class Dashboard implements OnInit {
       }
 
       this.dashboardData = dto;
+      this.tableData = dto.table.map((cat: any) => ({
+        ...cat,
+        expanded: false
+      }));
       
       // Select the last past month as default (first forecast comes after it)
       const firstForecastIndex = dto.isForecast.findIndex((f: boolean) => f === true);
@@ -68,11 +95,13 @@ export class Dashboard implements OnInit {
           name: 'Encaissements',
           type: 'bar',
           data: pastCashIn,
+          barWidth: 25,
           itemStyle: { color: '#22c55e' }
         },
         {
           name: 'Décaissements',
           type: 'bar',
+          barWidth: 25,
           data: pastCashOut,
           itemStyle: { color: '#F44336' }
         },

@@ -4,8 +4,23 @@
 
   <div class="header">
     <h2 class="page-title">Dashboard</h2>
+    
+    <div class="selector">
+      <button 
+        (click)="currentView = 'chart'" 
+        [class.active]="currentView === 'chart'">
+        <i class="ri-bar-chart-2-line"></i>
+         Chart
+      </button>
+      <button 
+        (click)="currentView = 'table'" 
+        [class.active]="currentView === 'table'">
+        <i class="ri-table-line"></i>
+         Table
+      </button>
+    </div>
 
-    <div class="month-selector">
+    <div class="selector">
       @for (month of dashboardData.months; track $index; let i = $index) {
         <button 
           (click)="selectMonth(i)" 
@@ -21,7 +36,7 @@
 
   <div class="card">
     <div class="card-top">
-      <span class="card-label">Solde actuel</span>
+      <span class="card-label">Solde du mois</span>
       <i class="ri-wallet-3-line"></i>
     </div>
 
@@ -57,12 +72,113 @@
 
 </div>
 
-  <!-- Chart -->
-  <div class="charts">
-    <div class="chart-card">
-      <h3>Aperçu mensuel & prévision (90 jours)</h3>
-      <div echarts [options]="chartOptions" class="chart"></div>
+  @if (currentView === 'chart') {
+    <!-- Chart -->
+    <div class="charts">
+      <div class="chart-card">
+        <h3>Aperçu mensuel (6 derniers mois) & prévision (90 jours)</h3>
+        <div echarts [options]="chartOptions" class="chart"></div>
+      </div>
     </div>
-  </div>
+  }
+
+  @if (currentView === 'table') {
+    <div class="table-container">
+
+      <table class="dashboard-table">
+
+        <!-- HEADER -->
+        <thead>
+          <tr>
+            <th class="left">Catégorie</th>
+            @for (month of dashboardData.months; track $index) {
+              <th 
+                class="right"
+                [class.selected-col]="$index === selectedMonthIndex"
+              >
+                {{ month }}
+              </th>
+            }
+          </tr>
+        </thead>
+
+        <!-- BODY -->
+        <tbody>
+          @for (cat of tableData; track cat.category) {
+
+            <!-- CATEGORY -->
+            <tr 
+              (click)="cat.expanded = !cat.expanded" 
+              class="category-row"
+              [class.expanded]="cat.expanded">
+
+              <td class="left">
+                <span class="arrow">
+                  {{ cat.expanded ? '▼' : '▶' }}
+                </span>
+                {{ cat.category }}
+              </td>
+
+              @for (val of cat.values; track $index) {
+                <td 
+                  class="right"
+                  [ngClass]="{
+                    'positive': cat.category === 'Recettes' && val !== 0,
+                    'negative': cat.category !== 'Recettes' && val !== 0,
+                    'selected-col': $index === selectedMonthIndex
+                  }"
+                >
+                  {{ val }}
+                </td>
+              }
+            </tr>
+
+            <!-- SUBCATEGORIES -->
+            @if (cat.expanded) {
+              @for (sub of cat.subCategories; track sub.subCategory) {
+
+                <tr class="subcategory-row">
+                  <td class="left sub">
+                    {{ sub.subCategory }}
+                  </td>
+
+                  @for (val of sub.values; track $index) {
+                    <td 
+                      class="right"
+                      [ngClass]="{
+                        'positive': cat.category === 'Recettes' && val !== 0,
+                        'negative': cat.category !== 'Recettes' && val !== 0,
+                        'selected-col': $index === selectedMonthIndex
+                      }"
+                    >
+                      {{ val }}
+                    </td>
+                  }
+                </tr>
+
+                <!-- ITEMS -->
+                @for (item of sub.items; track item.label) {
+                  <tr class="item-row">
+                    <td class="left item">
+                      {{ item.label }}
+                      <span class="date">{{ item.date }}</span>
+                    </td>
+
+                    <td class="right amount" colspan="100">
+                      {{ item.amount }} MAD
+                    </td>
+                  </tr>
+                }
+
+              }
+            }
+
+          }
+        </tbody>
+
+      </table>
+
+    </div>
+  }
 
 </div>
