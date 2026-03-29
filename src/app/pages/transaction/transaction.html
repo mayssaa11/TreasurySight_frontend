@@ -1,28 +1,18 @@
 <app-navbar></app-navbar>
 <div class="container">
-
   <!-- HEADER -->
   <div class="header">
-    <div class="tabs">
-      <button class="active">Actives</button>
-      <button>Archivées</button>
-      <button>A valider</button>
-    </div>
 
     <div class="actions">
-      <span>Total : <strong>{{transactions.length}}</strong></span>
-      <button class="icon-btn">⟳</button>
-      <button class="icon-btn">＋</button>
+      <h2 class="page-title">Transaction</h2>
     </div>
 
     <div class="filters">
-      <label>
-        <input type="checkbox"> Non catégorisées
-      </label>
+      <span>Total : <strong>{{transactions.length}}</strong></span>
       <input type="text" placeholder="Rechercher ici..." [(ngModel)]="search">
     </div>
   </div>
-
+<div class="card">
   <!-- TABLE -->
   <div class="table">
     <div class="table-header">
@@ -48,5 +38,11 @@
       </div>
     </div>
   </div>
+
+<button class="btn-add" mat-raised-button color="primary" (click)="openAddTransactionDialog()">
+  Ajouter Transaction
+</button>
+
+</div>
 
 </div>

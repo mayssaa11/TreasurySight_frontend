@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TransactionService {
-   private apiUrl = 'http://localhost:8080/transactions';
+   private apiUrl = 'http://localhost:8080/transaction';
 
   constructor(private http: HttpClient) {}
 

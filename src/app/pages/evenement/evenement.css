@@ -98,7 +98,7 @@
 /* Bouton aligné à droite */
 .btn-add {
   align-self: flex-end;   /* pousse le bouton à droite */
-  background-color: #0d2b66;
+  background-color: #1a73e8;
   color: white;
   padding: 10px 20px;
   border: none;

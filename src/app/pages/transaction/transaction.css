@@ -3,7 +3,21 @@
   font-family: Arial;
   background: #f5f6fa;
 }
-
+.card {
+  background-color: #ffffff;                 /* fond blanc */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);   /* ombre douce */
+  border-radius: 16px;                       /* coins arrondis */
+  padding: 24px;                             /* espacement intérieur */
+  width: 90%;                                /* largeur de la card */
+  margin: 40px auto;                         /* centrée horizontalement */
+  display: flex;
+  flex-direction: column;
+}
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a1a2e;
+}
 /* HEADER */
 .header {
   display: flex;
@@ -43,11 +57,15 @@
 .filters {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
+  width: 600px;
+  height: auto;
 }
 
 .filters input {
-  padding: 8px;
+ width: 500px;
+  max-width: 500px;
+  padding: 10px 15px;
   border-radius: 10px;
   border: 1px solid #ccc;
 }
@@ -90,4 +108,21 @@
 select {
   padding: 5px;
   border-radius: 8px;
+}
+
+.btn-add {
+  align-self: flex-end;   /* pousse le bouton à droite */
+  background-color: #1a73e8;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-add:hover {
+  background-color: #16377b;
+  transform: scaleX();
 }

@@ -1,0 +1,67 @@
+/* add-transaction-dialog.component.css */
+
+/* Popup container (Angular Material gère le fond sombre) */
+.mat-dialog-container {
+  border-radius: 12px;
+  padding: 24px;
+  width: 400px;
+  max-width: 90vw;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Titre centré et moderne */
+h4[mat-dialog-title] {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1f2937; /* gris foncé moderne */
+}
+
+/* Radio buttons flex et modernes */
+.mat-dialog-content label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.mat-dialog-content label:hover {
+  background-color: #f3f4f6; /* léger gris clair au hover */
+}
+
+.mat-dialog-content input[type="radio"] {
+  accent-color: #3b82f6; /* bleu moderne */
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* Actions (boutons) */
+.mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.mat-dialog-actions button {
+  border-radius: 8px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.mat-dialog-actions button:hover {
+  transform: translateY(-2px);
+}
+
+.mat-dialog-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

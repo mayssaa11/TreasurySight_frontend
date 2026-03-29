@@ -1,0 +1,22 @@
+<h4 mat-dialog-title class="text-center">Importer une facture PDF</h4>
+
+<form [formGroup]="pdfForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content class="flex flex-col gap-4">
+
+    <p>Sélectionnez votre fichier PDF de facture :</p>
+
+    <input type="file" accept="application/pdf" (change)="onFileSelected($event)" />
+
+    <div *ngIf="selectedFile" class="selected-file">
+      📄 {{ selectedFile.name }}
+    </div>
+
+  </div>
+
+  <div mat-dialog-actions align="end" class="mt-4">
+    <button mat-button type="button" (click)="onCancel()">Annuler</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!selectedFile">
+      Scanner & Extraire
+    </button>
+  </div>
+</form>
