@@ -3,43 +3,54 @@
   <!-- NAVBAR -->
   <header class="navbar">
 
-    <div class="logo">
-      <span>TreasurySight</span>
+    <div class="nav-left">
+      <div class="logo">TreasurySight</div>
     </div>
 
-    <nav>
+    <nav class="nav-links">
       <a href="#">Accueil</a>
       <a href="#">À propos</a>
-      <a href="#">Conditions d'utilisation</a>
+      <a href="#">Conditions</a>
     </nav>
+
+    <div class="nav-actions">
+      <button [routerLink]="['/register']" class="btn-primary small">S'inscrire</button>
+      <button [routerLink]="['/login']" class="btn-outline small">Se connecter</button>
+    </div>
 
   </header>
 
+  <!-- HERO -->
   <section class="hero">
 
     <div class="hero-text">
 
       <h1>
-        La gestion intelligente de la trésorerie
+        Pilotez votre trésorerie <div class="highlight">en temps réel</div>
       </h1>
 
-      <p>
-        TreasurySight est une plateforme moderne qui vous permet
-        de suivre, analyser et anticiper vos flux financiers
-        de manière simple et sécurisée.
+      <p class="subtitle">
+        Prenez des décisions éclairées grâce à une vision claire et instantanée
+        de vos flux financiers.
       </p>
 
-     <div class="buttons">
-  <button [routerLink]="['/register']" class="btn-primary">S'inscrire</button>
-  <button [routerLink]="['/login']" class="btn-outline">Se connecter</button>
-</div>
+      <p class="description">
+        TreasurySight centralise toutes vos données financières en un seul endroit.
+        Visualisez vos encaissements et décaissements, identifiez les tendances
+        clés et anticipez votre trésorerie sur les prochains mois grâce à des
+        analyses intelligentes et des prévisions fiables.
+      </p>
+
+      <div class="buttons">
+        <button [routerLink]="['/register']" class="btn-primary">S'inscrire</button>
+        <button [routerLink]="['/login']" class="btn-outline">Se connecter</button>
+      </div>
 
     </div>
 
-
     <!-- IMAGE -->
     <div class="hero-image">
-      <img src="/images/image d'acceuil.jpg" alt="finance illustration">
+      <img src="/images/image d'acceuil.jpg" alt="Dashboard preview">
     </div>
 
   </section>

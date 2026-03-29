@@ -3,37 +3,55 @@
   <div class="register-card">
 
     <h2>Créer un compte</h2>
+    <p class="subtitle">Commencez à piloter votre trésorerie dès aujourd’hui</p>
 
     <form [formGroup]="registerForm" (ngSubmit)="register()">
 
+      <!-- NAME ROW -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prénom</label>
+          <input type="text" placeholder="Prénom" required formControlName="prenom">
+        </div>
+
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" placeholder="Nom" required formControlName="nom">
+        </div>
+      </div>
+
+      <!-- EMAIL -->
       <div class="form-group">
-        <input type="text" placeholder="Prénom" required formControlName="prenom">
+        <label>Email</label>
+        <input type="email" placeholder="ex: contact@entreprise.com" required formControlName="email">
+      </div>
+
+      <!-- COMPANY INFO -->
+      <div class="form-group">
+        <label>Nom de l'entreprise</label>
+        <input type="text" placeholder="Nom de l'entreprise" required formControlName="nom_entreprise">
       </div>
 
       <div class="form-group">
-        <input type="text" placeholder="Nom" required formControlName="nom">
+        <label>Secteur d'activité</label>
+        <input type="text" placeholder="ex: Technologie, Commerce..." required formControlName="secteur_entreprise">
       </div>
 
+      <!-- PASSWORD -->
       <div class="form-group">
-        <input type="email" placeholder="Email" required formControlName="email">
+        <label>Mot de passe</label>
+        <input type="password" placeholder="••••••••" required formControlName="password">
       </div>
 
-      <div class="form-group">
-    <input type="text" placeholder="Nom de l'entreprise" required formControlName="nom_entreprise">
-  </div>
+      <!-- BUTTON -->
+      <button class="register-btn" type="submit">
+        Créer un compte
+      </button>
 
-  <div class="form-group">
-    <input type="text" placeholder="Secteur d'activité" required formControlName="secteur_entreprise">
-  </div>
-
-
-      <div class="form-group">
-        <input type="password" placeholder="Mot de passe" required formControlName="password">
-      </div>
-
-      <button class="register-btn" type="submit" [routerLink]="['/register']" routerLinkActive="router-link-active" >Créer un compte</button>
+      <!-- LOGIN -->
       <p class="text-center">
-        Vous avez déjà compte ? <a routerLink="/login">Se connecter</a>
+        Vous avez déjà un compte ? 
+        <a routerLink="/login">Se connecter</a>
       </p>
 
     </form>

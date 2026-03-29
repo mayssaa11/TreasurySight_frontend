@@ -118,7 +118,7 @@
 }
 
 .expense-card .card-value {
-  color: #F44336; /* orange instead of aggressive red */
+  color: #F44336; 
 }
 
 /* CHART */
@@ -145,38 +145,6 @@
 .chart {
   height: 400px;
 }
-/* 
-.table-container {
-  overflow-x: auto;
-}
-
-.dashboard-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.dashboard-table th,
-.dashboard-table td {
-  padding: 10px;
-  text-align: right;
-}
-
-.category-cell {
-  text-align: left;
-  font-weight: bold;
-}
-
-.positive {
-  color: #22c55e;
-}
-
-.negative {
-  color: #ef4444;
-}
-
-.selected {
-  background: #e3f2fd;
-} */
 
 .table-container {
   background: #ffffff;
@@ -293,7 +261,7 @@
 
 /* NEGATIVE (Expenses) */
 .negative {
-  color: #f97316; /* soft orange */
+  color: #F44336; 
   font-weight: 600;
 }
 

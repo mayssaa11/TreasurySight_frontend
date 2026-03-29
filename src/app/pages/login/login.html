@@ -2,26 +2,49 @@
 
   <div class="login-card">
 
-    <h2>Se connecter</h2>
+    <h2>Bienvenue 👋</h2>
+    <p class="subtitle">Connectez-vous à votre espace TreasurySight</p>
 
-    <form  [formGroup]="loginForm" (ngSubmit)="login()">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
 
+      <!-- EMAIL -->
       <div class="form-group">
-        <input formControlName="usernameOrEmail" type="text" placeholder="Nom d'utilisateur ou Email" formControlName="email">
+        <label>Email</label>
+        <input 
+          formControlName="email" 
+          type="email" 
+          placeholder="ex: contact@entreprise.com">
       </div>
 
+      <!-- PASSWORD -->
       <div class="form-group">
-        <input formControlName="mot_de_passe" type="password" placeholder="Mot de passe" formControlName="password">
+        <label>Mot de passe</label>
+        <input 
+          formControlName="password" 
+          type="password" 
+          placeholder="••••••••">
       </div>
 
-      <button type="submit" class="login-btn" [routerLink]="['/login']" routerLinkActive="router-link-active" >Se connecter</button>
+      <!-- OPTIONS -->
+      <div class="form-options">
+        <label class="remember">
+          <input type="checkbox"> Se souvenir de moi
+        </label>
 
-      <p class="text-center">
-        <a routerLink="/register">mot de passe oublié?</a>
-      </p>
+        <a routerLink="/forgot-password" class="link">
+          Mot de passe oublié ?
+        </a>
+      </div>
 
+      <!-- BUTTON -->
+      <button type="submit" class="login-btn">
+        Se connecter
+      </button>
+
+      <!-- REGISTER -->
       <p class="text-center">
-        Pas de compte ? <a routerLink="/register">S'inscrire</a>
+        Pas de compte ? 
+        <a routerLink="/register">S'inscrire</a>
       </p>
 
     </form>
