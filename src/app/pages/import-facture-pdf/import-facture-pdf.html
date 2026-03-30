@@ -1,22 +1,29 @@
-<h4 mat-dialog-title class="text-center">Importer une facture PDF</h4>
+<h4 mat-dialog-title class="dialog-title">Importer une facture PDF</h4>
 
 <form [formGroup]="pdfForm" (ngSubmit)="onSubmit()">
-  <div mat-dialog-content class="flex flex-col gap-4">
 
-    <p>Sélectionnez votre fichier PDF de facture :</p>
+  <div mat-dialog-content class="dialog-content">
 
-    <input type="file" accept="application/pdf" (change)="onFileSelected($event)" />
+    <p class="instruction">Sélectionnez votre fichier PDF de facture :</p>
+
+    <label class="file-input-label">
+      <input type="file" accept="application/pdf" (change)="onFileSelected($event)" />
+      <span class="btn-select-file">
+        <i class="ri-upload-2-line"></i> Choisir un fichier
+      </span>
+    </label>
 
     <div *ngIf="selectedFile" class="selected-file">
-      📄 {{ selectedFile.name }}
+      <i class="ri-file-text-line"></i> {{ selectedFile.name }}
     </div>
 
   </div>
 
-  <div mat-dialog-actions align="end" class="mt-4">
-    <button mat-button type="button" (click)="onCancel()">Annuler</button>
-    <button mat-raised-button color="primary" type="submit" [disabled]="!selectedFile">
-      Scanner & Extraire
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-button type="button" class="btn-cancel" (click)="onCancel()">Annuler</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!selectedFile" class="btn-submit">
+      <i class="ri-scissors-line"></i> Scanner & Extraire
     </button>
   </div>
+
 </form>

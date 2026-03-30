@@ -1,18 +1,27 @@
-<h4 mat-dialog-title>Ajouter une transaction</h4>
+<h4 mat-dialog-title class="dialog-title">Ajouter une transaction</h4>
 
-<div mat-dialog-content class="flex flex-col gap-3">
-  <label>
-    <input type="radio" name="method" [(ngModel)]="method" value="manual"> Saisie manuelle
+<div mat-dialog-content class="dialog-content">
+
+  <label class="radio-option">
+    <input type="radio" name="method" [(ngModel)]="method" value="manual">
+    <span>Saisie manuelle</span>
   </label>
-  <label>
-    <input type="radio" name="method" [(ngModel)]="method" value="integration"> Via intégration
+
+  <label class="radio-option">
+    <input type="radio" name="method" [(ngModel)]="method" value="integration">
+    <span>Via intégration</span>
   </label>
-  <label>
-    <input type="radio" name="method" [(ngModel)]="method" value="pdf"> Importer PDF
+
+  <label class="radio-option">
+    <input type="radio" name="method" [(ngModel)]="method" value="pdf">
+    <span>Importer PDF</span>
   </label>
+
 </div>
 
-<div mat-dialog-actions align="end" class="mt-4">
-  <button mat-button (click)="onCancel()">Annuler</button>
-  <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!method">Valider</button>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button class="btn-cancel" (click)="onCancel()">Annuler</button>
+  <button mat-raised-button color="primary" class="btn-submit" (click)="onSubmit()" [disabled]="!method">
+    Valider
+  </button>
 </div>
