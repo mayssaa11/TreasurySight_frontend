@@ -1,0 +1,398 @@
+<app-navbar></app-navbar>
+
+
+<!-- ════════════════════════════════════════ HEADER ════════════════════════════════════════ -->
+<header>
+  <div class="hd">
+    <a class="logo" href="#">
+      <div class="logo-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <div>
+        <span class="logo-name">TrésoIA</span>
+        <span class="logo-sub">Prédiction Intelligence PME</span>
+      </div>
+    </a>
+    <div class="hdst">
+      <span class="dot"></span>
+      <span [style.color]="apiStatusColor">{{ apiStatus }}</span>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════ HERO ════════════════════════════════════════ -->
+<section class="hero">
+  <div class="w">
+    <div class="htag">LSTM · GRU · FastAPI · PyTorch</div>
+    <h1 class="htitle">Prédiction &amp;<br/>Analyse de Trésorerie</h1>
+    <p class="hdesc">
+      Comparez vos prévisions manuelles avec les modèles IA — obtenez un score
+      et des recommandations concrètes.
+    </p>
+    <div class="hmet">
+      <div class="hm">
+        <span class="hm-v">LSTM</span>
+        <span class="hm-l">Décaissements</span>
+      </div>
+      <div class="hm-sep"></div>
+      <div class="hm">
+        <span class="hm-v">GRU</span>
+        <span class="hm-l">Encaissements</span>
+      </div>
+      <div class="hm-sep"></div>
+      <div class="hm">
+        <span class="hm-v">T+1</span>
+        <span class="hm-l">Horizon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ MAIN ════════════════════════════════════════ -->
+<main class="w grid">
+
+  <!-- ── FORMULAIRE ── -->
+  <div class="card">
+    <div class="ph">
+      <div class="pi blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+          <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="pt">Saisie Manuelle</div>
+        <div class="ps">Données réelles de votre PME</div>
+      </div>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+
+      <!-- 01 Informations Entreprise -->
+      <div class="fsec">
+        <div class="flab">
+          <span class="fnum">01</span> Informations Entreprise
+        </div>
+        <div class="fg">
+          <div class="fl">
+            <label>Ville <span class="req">*</span></label>
+            <select [(ngModel)]="ville" name="ville" required>
+              <option value="">— Sélectionner —</option>
+              <option *ngFor="let v of villes" [value]="v">{{ v }}</option>
+            </select>
+          </div>
+          <div class="fl">
+            <label>CA Mensuel HT <span class="req">*</span></label>
+            <div class="iw">
+              <input
+                type="number"
+                [(ngModel)]="ca"
+                name="ca"
+                placeholder="ex. 250 000"
+                min="0"
+                required
+              />
+              <span class="iu">MAD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 Scores de Risque -->
+      <div class="fsec">
+        <div class="flab">
+          <span class="fnum">02</span> Scores de Risque
+        </div>
+        <div class="fg">
+
+          <!-- Retard Paiement ODP -->
+          <div class="fl">
+            <label>
+              Retard Paiement ODP <span class="req">*</span>
+              <span class="tw">
+                <span class="ti">ⓘ</span>
+                <span class="tb">0 = aucun retard · 100 = retards fréquents</span>
+              </span>
+            </label>
+            <div class="sw">
+              <input
+                type="range"
+                [(ngModel)]="sr"
+                name="sr"
+                min="0"
+                max="100"
+                step="1"
+                [style.background]="srBackground"
+                (input)="onSliderChange('sr')"
+              />
+              <span class="sv">{{ srDisplay }}</span>
+            </div>
+            <div class="sl">
+              <span>0</span><span>50</span><span>100</span>
+            </div>
+          </div>
+
+          <!-- Dépendance Top 3 -->
+          <div class="fl">
+            <label>
+              Dépendance Top 3 Clients <span class="req">*</span>
+              <span class="tw">
+                <span class="ti">ⓘ</span>
+                <span class="tb">Part du CA sur vos 3 plus gros clients (%)</span>
+              </span>
+            </label>
+            <div class="sw">
+              <input
+                type="range"
+                [(ngModel)]="dep"
+                name="dep"
+                min="0"
+                max="100"
+                step="1"
+                [style.background]="depBackground"
+                (input)="onSliderChange('dep')"
+              />
+              <span class="sv">{{ depDisplay }}</span>
+            </div>
+            <div class="sl">
+              <span>0%</span><span>50%</span><span>100%</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 03 Trésorerie Réelle -->
+      <div class="fsec">
+        <div class="flab">
+          <span class="fnum">03</span> Trésorerie Réelle — Mois en Cours
+        </div>
+        <div class="fg">
+          <div class="fl">
+            <label>Encaissement Réel <span class="req">*</span></label>
+            <div class="iw">
+              <input
+                type="number"
+                [(ngModel)]="enc"
+                name="enc"
+                placeholder="ex. 180 000"
+                min="0"
+                required
+              />
+              <span class="iu">MAD</span>
+            </div>
+          </div>
+          <div class="fl">
+            <label>Décaissement Réel <span class="req">*</span></label>
+            <div class="iw">
+              <input
+                type="number"
+                [(ngModel)]="dec"
+                name="dec"
+                placeholder="ex. 140 000"
+                min="0"
+                required
+              />
+              <span class="iu">MAD</span>
+            </div>
+          </div>
+          <div class="fl full">
+            <label>
+              Solde Prévu Manuel T+1 <span class="req">*</span>
+              <span class="tw">
+                <span class="ti">ⓘ</span>
+                <span class="tb">Votre estimation du solde le mois prochain</span>
+              </span>
+            </label>
+            <div class="iw hl">
+              <input
+                type="number"
+                [(ngModel)]="sol"
+                name="sol"
+                placeholder="ex. 95 000"
+                required
+              />
+              <span class="iu">MAD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn" [disabled]="loading">
+        <ng-container *ngIf="!loading">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+          <span>Lancer la Prédiction IA</span>
+        </ng-container>
+        <ng-container *ngIf="loading">
+          <span class="spinner"></span>
+          <span>&nbsp;Calcul en cours…</span>
+        </ng-container>
+        <span class="shine"></span>
+      </button>
+
+    </form>
+  </div>
+
+  <!-- ── RÉSULTATS ── -->
+  <div class="card" id="rp">
+
+    <!-- Empty State -->
+    <div class="empty" *ngIf="showEmpty">
+      <svg viewBox="0 0 80 80" fill="none">
+        <circle cx="40" cy="40" r="38" stroke="#BBDEFB" stroke-width="2" stroke-dasharray="6 4"/>
+        <path d="M22 52 Q40 22 58 52" stroke="#1565C0" stroke-width="2.5"
+              stroke-linecap="round" fill="none"/>
+        <circle cx="40" cy="33" r="6" fill="#42A5F5" opacity="0.5"/>
+      </svg>
+      <p class="et">En attente de données</p>
+      <p class="es">
+        Remplissez le formulaire et lancez la prédiction pour voir
+        l'analyse IA vs Manuel.
+      </p>
+    </div>
+
+    <!-- Results -->
+    <div *ngIf="showResults">
+
+      <!-- Simulation badge -->
+      <div class="simbdg" *ngIf="isSimulated">
+        ⚠️ Mode simulation locale. Démarrez
+        <code style="background:#FEF3C7;padding:1px 5px;border-radius:4px">
+          uvicorn main:app --reload
+        </code>
+        pour les vrais modèles.
+      </div>
+
+      <div class="ph">
+        <div class="pi green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <div>
+          <div class="pt">Résultats &amp; Analyse</div>
+          <div class="ps">Comparaison IA vs prévision manuelle</div>
+        </div>
+      </div>
+
+      <!-- Result Cards -->
+      <div class="rcards">
+        <div class="rc rc-b">
+          <span class="rc-lbl">Solde IA prévu T+1</span>
+          <span class="rc-val">{{ rIA }}</span>
+          <span class="rc-unit">MAD</span>
+          <div class="rc-bdg">LSTM + GRU</div>
+        </div>
+        <div class="rc rc-o">
+          <span class="rc-lbl">Prévision Manuelle</span>
+          <span class="rc-val">{{ rMAN }}</span>
+          <span class="rc-unit">MAD</span>
+          <div class="rc-bdg">Manuel</div>
+        </div>
+        <div class="rc rc-o">
+          <span class="rc-lbl">Solde Réel Actuel</span>
+          <span class="rc-val">{{ rREEL }}</span>
+          <span class="rc-unit">MAD</span>
+          <div class="rc-bdg">Ce mois</div>
+        </div>
+      </div>
+
+      <!-- Score Section -->
+      <div class="ssec">
+        <div class="stit">Score de Précision</div>
+        <div class="srow">
+          <div class="si">
+            <span class="si-l">🤖 Précision Modèle IA</span>
+            <div class="sbw">
+              <div class="sb">
+                <div class="sf sf-b" [style.width.%]="barWidthIA"></div>
+              </div>
+              <span class="spct">{{ scoreIADisplay }}</span>
+            </div>
+          </div>
+          <div class="si">
+            <span class="si-l">👤 Précision Manuelle</span>
+            <div class="sbw">
+              <div class="sb">
+                <div class="sf sf-g" [style.width.%]="barWidthMan"></div>
+              </div>
+              <span class="spct">{{ scoreManDisplay }}</span>
+            </div>
+          </div>
+        </div>
+        <div [class]="verdictClass">{{ verdictText }}</div>
+      </div>
+
+      <!-- Décomposition -->
+      <div class="dsec">
+        <div class="dtit">Décomposition Prédite T+1</div>
+        <div class="dgrid">
+          <div class="dc enc">
+            <div class="di">↑</div>
+            <div>
+              <span class="dl">Encaissement prédit (GRU)</span>
+              <span class="dv">{{ dENC }}</span>
+            </div>
+          </div>
+          <div class="dc dec">
+            <div class="di">↓</div>
+            <div>
+              <span class="dl">Décaissement prédit (LSTM)</span>
+              <span class="dv">{{ dDEC }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bar Chart -->
+      <div class="csec">
+        <div class="ctit">Comparaison Visuelle des Soldes</div>
+        <div class="bcwrap">
+          <div class="bcg" *ngFor="let bar of bars">
+            <div class="bcbw">
+              <div
+                class="bcb"
+                [ngClass]="bar.cls"
+                [style.height.%]="bar.animated ? bar.pct : 0"
+              ></div>
+            </div>
+            <div class="bcl">{{ bar.label }}</div>
+            <div class="bca">{{ fmt(bar.val) }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conseils -->
+      <div class="asec">
+        <div class="ah">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="14" style="flex-shrink:0">
+            <path fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0
+                     1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0
+                     100-2v-3a1 1 0 00-1-1H9z"
+                  clip-rule="evenodd"/>
+          </svg>
+          Recommandations
+        </div>
+        <ul class="al">
+          <li *ngFor="let tip of advices">{{ tip }}</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- ════════════════════════════════════════ FOOTER ════════════════════════════════════════ -->
+<footer>
+  <div class="w ft">
+    <span>TrésoIA — Prédiction Intelligence PME Maroc</span>
+    <span>LSTM · GRU · FastAPI · PyTorch</span>
+  </div>
+</footer>
