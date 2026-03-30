@@ -5,53 +5,69 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ImportService } from '../../services/import';
 
-@Component({
-  selector: 'app-import-facture-pdf',
-  imports: [CommonModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule],
-  templateUrl: './import-facture-pdf.html',
-  styleUrl: './import-facture-pdf.css',
-})
-export class ImportFacturePdf {
+  @Component({
+    selector: 'app-import-facture-pdf',
+    imports: [CommonModule,
+      ReactiveFormsModule,
+      MatButtonModule,
+      MatDialogModule,
+      MatFormFieldModule,
+      MatInputModule],
+    templateUrl: './import-facture-pdf.html',
+    styleUrl: './import-facture-pdf.css',
+  })
+  export class ImportFacturePdf {
 
-  pdfForm: FormGroup;
-  selectedFile: File | null = null;
+    pdfForm: FormGroup;
+    selectedFile: File | null = null;
 
-  constructor(
-    private fb: FormBuilder,
-    private dialogRef: MatDialogRef<ImportFacturePdf>
-  ) {
-    this.pdfForm = this.fb.group({
-      file: [null]
-    });
-  }
+    constructor(
+      private fb: FormBuilder,
+      private dialogRef: MatDialogRef<ImportFacturePdf>,
+      private importService: ImportService
+    ) {
+      this.pdfForm = this.fb.group({
+        file: [null]
+      });
+    }
 
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    if (file && file.type === 'application/pdf') {
+    onFileSelected(event: any) {
+      const file: File = event.target.files[0];
+
+      if (!file || file.type !== 'application/pdf') {
+        alert('Veuillez sélectionner un fichier PDF valide.');
+        return;
+      }
+
       this.selectedFile = file;
       this.pdfForm.patchValue({ file });
-      console.log('Fichier PDF sélectionné:', file.name);
-    } else {
-      alert('Veuillez sélectionner un fichier PDF valide.');
     }
-  }
 
-  onCancel() {
-    this.dialogRef.close();
-  }
-
-  onSubmit() {
-    if (this.selectedFile) {
-      console.log('PDF à traiter:', this.selectedFile);
-      // Ici, appeler ton service pour scanner / extraire les données du PDF
-      this.dialogRef.close(this.selectedFile);
+    onCancel() {
+      this.dialogRef.close();
     }
-  }
 
-}
+    onSubmit() {
+      const entrepriseId = 1;
+
+      if (!this.selectedFile) return;
+
+      console.log('Uploading PDF...');
+
+      this.importService.parsePdf(this.selectedFile, entrepriseId).subscribe({
+        next: (response) => {
+          console.log('Extraction result:', response);
+
+          // 👉 Close dialog and send extracted data
+          this.dialogRef.close(response);
+        },
+        error: (err) => {
+          console.error('Error during parsing:', err);
+          alert('Erreur lors du traitement du fichier.');
+        }
+      });
+    }
+
+  }

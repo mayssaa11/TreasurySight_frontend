@@ -13,7 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class Evenement {
   activeTab: string = 'clients';
-   entreprise_id = 3; // id de l'entreprise du user connecté
+   entreprise_id = 1; // id de l'entreprise du user connecté
   clients: EvenementService[] = [];
   fournisseurs: EvenementService[] = [];
   evenements: EvenementService[] = [];

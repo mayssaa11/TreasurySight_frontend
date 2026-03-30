@@ -1,67 +1,83 @@
-/* add-transaction-dialog.component.css */
-
-/* Popup container (Angular Material gère le fond sombre) */
-.mat-dialog-container {
-  border-radius: 12px;
-  padding: 24px;
-  width: 400px;
-  max-width: 90vw;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  font-family: 'Inter', sans-serif;
-}
-
-/* Titre centré et moderne */
-h4[mat-dialog-title] {
+/* DIALOG TITLE */
+.dialog-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2c3e50;
   text-align: center;
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #1f2937; /* gris foncé moderne */
+  margin-bottom: 1.5rem;
 }
 
-/* Radio buttons flex et modernes */
-.mat-dialog-content label {
+/* CONTENT */
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.95rem;
+  color: #4b5563;
+  text-align: center;
+}
+
+/* RADIO OPTIONS */
+.radio-option {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  gap: 0.6rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  max-width: 250px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 1rem;
+  transition: all 0.2s;
+  background-color: #f9fafb;
 }
 
-.mat-dialog-content label:hover {
-  background-color: #f3f4f6; /* léger gris clair au hover */
+.radio-option input[type="radio"] {
+  accent-color: #7da7d9;
+  cursor: pointer;
 }
 
-.mat-dialog-content input[type="radio"] {
-  accent-color: #3b82f6; /* bleu moderne */
-  width: 1.2rem;
-  height: 1.2rem;
+.radio-option:hover {
+  background-color: #eef2f7;
 }
 
-/* Actions (boutons) */
-.mat-dialog-actions {
+.radio-option input:checked + span {
+  font-weight: 600;
+  color: #1a73e8;
+}
+
+/* ACTIONS */
+.dialog-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+  width: 100%;
 }
 
-.mat-dialog-actions button {
-  border-radius: 8px;
-  padding: 0.5rem 1.25rem;
+/* CANCEL BUTTON */
+.btn-cancel {
+  color: #6b7280;
   font-weight: 500;
-  transition: all 0.2s ease;
 }
 
-.mat-dialog-actions button:hover {
-  transform: translateY(-2px);
+.btn-cancel:hover {
+  color: #374151;
 }
 
-.mat-dialog-actions button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+/* SUBMIT BUTTON */
+.btn-submit {
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.45rem 1.2rem;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.btn-submit:hover {
+  background-color: #6892c7;
 }

@@ -1,81 +1,116 @@
-<!-- ================= CLIENTS ================= -->
 <app-navbar></app-navbar>
-<div class="events-page"> <!-- HEADER -->
-  <div class="events-header"> <!-- BOUTONS -->
+
+<div class="events-dashboard">
+
+  <!-- HEADER -->
+  <div class="events-header">
+
+    <h2 class="page-title">Événements futurs</h2>
+
+    <!-- FILTERS -->
     <div class="filters">
-      <button class="filter-btn" [class.active]="activeTab === 'clients'" (click)="activeTab = 'clients'"> Clients </button> <button class="filter-btn" [class.active]="activeTab === 'fournisseurs'" (click)="activeTab = 'fournisseurs'"> Fournisseurs </button> <button class="filter-btn" [class.active]="activeTab === 'evenements'" (click)="activeTab = 'evenements'"> Événements </button> <span class="total">Total : 3</span> </div> <!-- SEARCH --> <div class="search-add"> <label class="search-box"> <input type="text" placeholder="Rechercher ici..."> </label> <button class="btn-settings">&#9881;</button> <button class="btn-download">&#128229;</button> </div> </div>
-<div class="card">
-<table *ngIf="activeTab === 'clients'" class="events-table">
-  <thead>
-    <tr>
-      <th><input type="checkbox"></th>
-      <th>N°FACTURE</th>
-      <th>ÉCHÉANCE</th>
-      <th>DESCRIPTION</th>
-      <th>CATÉGORIE</th>
-      <th>STATUT</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let e of clients" style="cursor:pointer">
-      <td><input type="checkbox"></td>
-      <td>{{ e.id }}</td>
-      <td>{{ e.dateEcheance }}</td>
-      <td>{{ e.description }}</td>
-      <td>{{ e.type }}</td>
-      <td>{{ e.statut }}</td>
-    </tr>
-  </tbody>
-</table>
+      <button class="filter-btn" [class.active]="activeTab === 'clients'" (click)="activeTab = 'clients'">
+        Créances clients
+      </button>
+      <button class="filter-btn" [class.active]="activeTab === 'fournisseurs'" (click)="activeTab = 'fournisseurs'">
+        Dettes fournisseurs
+      </button>
+      <button class="filter-btn" [class.active]="activeTab === 'evenements'" (click)="activeTab = 'evenements'">
+        Autres
+      </button>
+    </div>
 
-<!-- ================= FOURNISSEURS ================= -->
-<table *ngIf="activeTab === 'fournisseurs'" class="events-table">
-  <thead>
-    <tr>
-      <th><input type="checkbox"></th>
-      <th>N°FACTURE</th>
-      <th>ÉCHÉANCE</th>
-      <th>DESCRIPTION</th>
-      <th>CATÉGORIE</th>
-      <th>STATUT</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let e of fournisseurs" style="cursor:pointer">
-      <td><input type="checkbox"></td>
-      <td>{{ e.id }}</td>
-      <td>{{ e.dateEcheance }}</td>
-      <td>{{ e.description }}</td>
-      <td>{{ e.type }}</td>
-      <td>{{ e.statut }}</td>
-    </tr>
-  </tbody>
-</table>
+    <!-- SEARCH & ACTIONS -->
+    <div class="search-add">
+      <label class="search-box">
+        <input type="text" placeholder="Rechercher ici...">
+      </label>
+      <div class="action-buttons">
+        <button class="btn-settings" title="Paramètres"><i class="ri-settings-3-line"></i></button>
+        <button class="btn-download" title="Télécharger"><i class="ri-download-line"></i></button>
+      </div>
+    </div>
 
-<!-- ================= EVENEMENTS ================= -->
-<table *ngIf="activeTab === 'evenements'" class="events-table">
-  <thead>
-    <tr>
-      <th><input type="checkbox"></th>
-      <th>N°FACTURE</th>
-      <th>ÉCHÉANCE</th>
-      <th>DESCRIPTION</th>
-      <th>CATÉGORIE</th>
-      <th>STATUT</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let e of evenements" style="cursor:pointer">
-      <td><input type="checkbox"></td>
-      <td>{{ e.id }}</td>
-      <td>{{ e.dateEcheance }}</td>
-      <td>{{ e.description }}</td>
-      <td>{{ e.type }}</td>
-      <td>{{ e.statut }}</td>
-    </tr>
-  </tbody>
-</table>
-<button class="btn-add" mat-raised-button color="primary" (click)="openDialog()">
-  + Ajouter événement
-</button>
+  </div>
+
+  <!-- TABLE CARD -->
+  <div class="events-card">
+
+    <!-- CLIENTS TABLE -->
+    <table *ngIf="activeTab === 'clients'" class="events-table">
+      <thead>
+        <tr>
+          <th><input type="checkbox"></th>
+          <th>N°FACTURE</th>
+          <th>ÉCHÉANCE</th>
+          <th>DESCRIPTION</th>
+          <th>CATÉGORIE</th>
+          <th>STATUT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of clients" class="table-row">
+          <td><input type="checkbox"></td>
+          <td>{{ e.id }}</td>
+          <td>{{ e.dateEcheance }}</td>
+          <td>{{ e.description }}</td>
+          <td>{{ e.type }}</td>
+          <td>{{ e.statut }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- FOURNISSEURS TABLE -->
+    <table *ngIf="activeTab === 'fournisseurs'" class="events-table">
+      <thead>
+        <tr>
+          <th><input type="checkbox"></th>
+          <th>N°FACTURE</th>
+          <th>ÉCHÉANCE</th>
+          <th>DESCRIPTION</th>
+          <th>CATÉGORIE</th>
+          <th>STATUT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of fournisseurs" class="table-row">
+          <td><input type="checkbox"></td>
+          <td>{{ e.id }}</td>
+          <td>{{ e.dateEcheance }}</td>
+          <td>{{ e.description }}</td>
+          <td>{{ e.type }}</td>
+          <td>{{ e.statut }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- EVENEMENTS TABLE -->
+    <table *ngIf="activeTab === 'evenements'" class="events-table">
+      <thead>
+        <tr>
+          <th><input type="checkbox"></th>
+          <th>N°FACTURE</th>
+          <th>ÉCHÉANCE</th>
+          <th>DESCRIPTION</th>
+          <th>CATÉGORIE</th>
+          <th>STATUT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of evenements" class="table-row">
+          <td><input type="checkbox"></td>
+          <td>{{ e.id }}</td>
+          <td>{{ e.dateEcheance }}</td>
+          <td>{{ e.description }}</td>
+          <td>{{ e.type }}</td>
+          <td>{{ e.statut }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="btn-add" mat-raised-button color="primary" (click)="openDialog()">
+      <i class="ri-add-line"></i> Ajouter événement
+    </button>
+
+  </div>
 </div>

@@ -1,128 +1,119 @@
-.container {
-  padding: 20px;
-  font-family: Arial;
-  background: #f5f6fa;
+.transactions-dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  min-height: 100vh;
+  background: #f7f9fc;
 }
-.card {
-  background-color: #ffffff;                 /* fond blanc */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);   /* ombre douce */
-  border-radius: 16px;                       /* coins arrondis */
-  padding: 24px;                             /* espacement intérieur */
-  width: 90%;                                /* largeur de la card */
-  margin: 40px auto;                         /* centrée horizontalement */
-  display: flex;
-  flex-direction: column;
-}
-.page-title {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #1a1a2e;
-}
+
 /* HEADER */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.tabs button {
-  padding: 10px 20px;
-  border: none;
-  background: #eaeaf0;
-  margin-right: 5px;
-  border-radius: 10px;
-  cursor: pointer;
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a1a2e;
 }
 
-.tabs .active {
-  background: #1e1e2f;
-  color: white;
-}
-
-.actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.icon-btn {
-  border: none;
-  background: #eaeaf0;
-  padding: 8px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
+/* FILTERS */
 .filters {
   display: flex;
   align-items: center;
-  gap: 20px;
-  width: 600px;
-  height: auto;
+  gap: 0.6rem;
 }
 
 .filters input {
- width: 500px;
-  max-width: 500px;
-  padding: 10px 15px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #e5eaf0;
+  background: #ffffff;
+  font-size: 0.85rem;
+}
+
+/* CARD */
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  border: 1px solid #e8ecf0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  overflow-x: auto;
 }
 
 /* TABLE */
-.table {
-  background: white;
-  border-radius: 15px;
-  overflow: hidden;
+.transactions-table {
+  display: grid;
+  grid-template-rows: auto;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
 }
 
-.table-header, .table-row {
+.table-header,
+.table-row {
   display: grid;
-  grid-template-columns: 40px 150px 1fr 150px 200px;
-  padding: 15px;
+  grid-template-columns: 40px 1fr 2fr 1fr 1.2fr;
   align-items: center;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid #f1f3f7;
 }
 
 .table-header {
-  font-weight: bold;
-  background: #f1f2f6;
-}
-
-.table-row {
-  border-top: 1px solid #eee;
+  background: #f7f9fc;
+  font-weight: 600;
+  color: #8a9099;
+  border-bottom: 2px solid #e8ecf0;
 }
 
 .table-row:hover {
-  background: #f9f9f9;
+  background: #f7f9fc;
+  cursor: pointer;
 }
 
+/* AMOUNT COLORS */
 .debit {
-  color: red;
+  color: #F44336;
+  font-weight: 600;
 }
 
 .credit {
-  color: green;
+  color: #22c55e;
+  font-weight: 600;
 }
 
-select {
-  padding: 5px;
-  border-radius: 8px;
+/* SELECT */
+.table-row select {
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #e5eaf0;
+  background: #ffffff;
+  font-size: 0.85rem;
 }
 
+/* ADD BUTTON */
 .btn-add {
-  align-self: flex-end;   /* pousse le bouton à droite */
-  background-color: #1a73e8;
-  color: white;
-  padding: 10px 20px;
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
   border: none;
   border-radius: 8px;
+  background: #1a73e8;
+  color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.2s;
 }
 
 .btn-add:hover {
-  background-color: #16377b;
-  transform: scaleX();
+  background: #1666c1;
 }
